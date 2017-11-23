@@ -19,6 +19,8 @@
 
 # python2 & python3
 - ```input()```在python2中是把输入的数据直接当做代码来执行,Python3把这个函数删了.用```raw_input()```替代输入. 
+- print
+    - from __future__ import print_function
 
 # Terminology(术语)
 - Literal Constants(字面常量):你用的就是它字面意义上的值或是内容.它是一个 常量，因为它的值不能被改变。
@@ -46,10 +48,17 @@
 - namespace(命名空间)
 - Keyword Arguments(关键字参数)
 - Documentation Strings(文档字符串)
-
-
-
+- Packages(包)
+- Data Structures(数据结构)
 - structured data(结构化数据)
+- list(列表)
+- tuple(元组)
+- 字典(Dictionary)
+- set(集合)
+- mutable(可变的)
+- method(方法)
+- field(字段)
+
 - column-oriented(面向列)
 - panel data(面板数据):这是计量经济学中有关多维结构化数据集的一个术语。
 - Munge/Munging/Wrangling(数据规整)
@@ -121,8 +130,7 @@
 - int 有符号整数，其最大值由平台决定(是32位还是64位)。
 - long 任意精度的有符号整数，大的 int 值会被自动转换为 long。
 - fval = 6.78e-5 可以用科学计数法表示。
-- Python 3中，整数除法除不尽时就会产生一个浮点数。
-- 但是在 Python 2.7 及一下版本中，添加一条语句到自定义模块的顶部即可  from __future__ import division，或者使用 3 / float(2)
+- Python 3中，整数除法除不尽时就会产生一个浮点数。但是在 Python 2.7 及以下版本中，添加一条语句到自定义模块的顶部即可```from __future__ import division```或者使用```3 / float(2)```
 - 要得到C风格的整数除法(如果除不尽，就丢弃小数部分)，使用除后圆整运算符 (//)
 - Python 字符串是不可变的。要修改字符串就只能创建一个新的。
 - 许多Python对象都可以用 str() 函数转换为字符串。
@@ -158,7 +166,7 @@
     - x[index:index], x(arguments...), x.attribute
     - (expressions...), [expressions...], {key: value...}, {expressions...}
 - 表达式
-    - value = true-expr if condition else false-expr 三元表达式。如果条件表达式非常复杂，就可能会牺牲可读性。
+    - ```value = true-expr if condition else false-expr``` 三元表达式。如果条件表达式非常复杂，就可能会牺牲可读性。
 
 
 
@@ -170,7 +178,7 @@
 - while 循环定义了一个条件和一个代码块,只要条件部位False或循环没有被break显式终止,则代码块将一直不断地执行下去.
 - while语句同样可以拥有else子句作为可选项.
 - for语句同样可以拥有else子句,它总会在for循环结束后开始执行,除非程序遇到了break语句.
-- range()每次只会生成一个数字,如果希望获得完整的序列,要使用```list(range(5))```
+- ```range()```每次只会生成一个数字,如果希望获得完整的序列,要使用```list(range(5))```
 - ```for i in range(1,5)``` 等价于 ```for i in [1,2,3,4]```
 - for循环用于对集合(列表或元组)或迭代器进行迭代。
 - for循环能再任何队列中工作.
@@ -192,43 +200,48 @@
 - 另一种方法时编写Python解释器本身的本地语言.你可以使用C来编写Python模块,并在编译后,通过Python解释器在Python代码中使用它们.
 - 标准库就是一系列模块.
 - sys模块包含了与Python解释器及其环境相关的功能,也就是所谓的系统功能(system)
-- 初始化工作只需在我们第一次导入模块时完成.
+- 当模块第一次被导入是,它所包含的代码将被执行.初始化工作只需在我们第一次导入模块时完成.
 - ```sys.argv```包含了命令行参数(Command Line Arguments),这一列表,也就是使用命令行传递程序的参数.
 - ```sys.path``` Python解释器首先会寻找模块,它会从它的sys.path变量所提供的目录中进行搜索.该目录包括了包含导入模块的字典名称列表.第一段字符串是空的,它代表程序启动的目录,这意味着你可以直接导入位于启动目录中的模块.否则,你必须将模块放置在sys.path内所列出的目录中.
 - ```import os; print(os.getcwd())```可以用来查看目前程序所在目录.
-
-
-
-# tuple(元组)
-- Python 的数据结构简单而强大。精通其用法是称为专家级Python程序员的关键环节。
-- tuple 元组是一种一维的、定长的、不可变的Python对象序列。最简单的创建方式是一组以逗号隔开的值，在更复杂的表达式中定义元组时，常常需要用圆括号将值围起来。
-- 通过调用tuple()任何序列或迭代器都可以被转换为元组
-- 跟大部分其他序列类型一样，元组的元素也可以通过方括号[]进行访问。序列是从0开始索引的。
-- 虽然存储在元组中的对象本身可能是可变的，但一旦创建完毕，存放在各个插槽中的对象就不能在被修改了。
-```Python
-tup = tuple(['foo', [1, 2], True])
-tup[1].append(3)
-```
-- 元组可以通过 + 运算符连接起来以产生更长的元组
-- 对一个元组乘以一个整数，相当于是连接该元组的多个副本。注意对象本身不会被复制的，这里涉及的只是他们的引用
-- 如果对元组型变量表达式进行赋值，Python就会尝试将等号右侧的值进行拆包(unpacking),嵌套元组也能被拆包。
-- 利用上述功能可以非常轻松地交换变量名。 b, a = a, b
-- 变量拆包功能常用于对由元组或列表组成的序列进行迭代，另一个常见的用法是处理从函数中返回多个值。
-```Python
-seq = [(1, 2, 3), (4, 5, 6), (7, 8, 9)]
-for a, b, c in seq:
-    pass
-```
-- 由于元组的大小和内存不能被修改，所以实例方法很少。最有用的是count(列表也是如此)。计算指定值出现的次数。 
+- 导入一个模块是一件代价高昂的事情,因此Python引入了一些技巧使其能够更快速的完成.
+- 按字节码编译的(Byte-Compiled)文件,以.pyc为扩展名,是将Python转换成中间形式的文件.这一文件在下一次从其他不同程序导入模块时将更快.
+- .pyc文件通常会创建在与对应的.py文件所处的目录中.如果Python没有写入文件权限,那么.pyc文件将不会被创建.    
+- 一般来说,应该避免使用from import,而去使用import.这是为了避免在程序中出现名称冲突,同时也是为了使程序更加易读.
+- 每个Python模块都定义了它的__name__属性.如果它与__main__属性相同则代表这一模块是由用户独立运行的,否则它就是从其他模块导入的.
+- 编写自己的模块很简单,因为每一个Python程序同时也是一个模块.
+- 我么使用相同的.符号来访问模块中的成员.Python很好地重用了其中的符号,这充满了'Pythonic'式的气息,使我们不必学习新的方式完成同样的事情.
+- ```from module import *```这将导入所有公共名称,但不会导入以双下划线开头的名称.
+- Python的一大直到原则是"明了胜过晦涩"或者说"显式胜过隐式".可以运行```import this```来了解一首关于Python的诗.
+- 内置的```dir()```函数能够返回由对象所定义的名称列表.如果这一对象是一个模块,则该列表会包括函数内所定义的函数,类,与变量.
+- 该函数接收参数,如果参数是模块名称,函数将返回这一指定模块的名称列表.如果没有提供参数,函数将返回当前模块的名称列表.
+- del 语句可以删除或移除一个变量或属性.```del exit``` ipython 将无法使用exit退出.
+- ```dir()```可以对任何对象工作.例如运行```dir(str)```可以访问str类的属性.```dir('str')```可以访问'str'字符串对象的方法.
+- ```vars()```函数也可以返回给你这些值的属性,但只是可能,它并不能针对所有类都能正常工作. vars() argument must have __dict__ attribute.
+- 如果你希望有组织的管理一个或多个模块的话,应该使用包(Packages).
+- 包是指一个包含模块与一个特殊的__init__.py文件的文件夹,后者想Python表明这一文件夹是特别的,因为其包含了Python模块.
+- 函数是程序中可重用部分,模块是一种可重用的程序,包是用以组织模块的另一种层次结构.
+- Python所附带的标准库就是这样一组有关包与模块的例子.
 
 
 
 # list(列表)
-- 跟元组相比，列表(list)是变长的，而且其内容也是可以修改的。它可以通过[] 和 list() 进行定义。
-- .append .insert .pop .remove .extend .sort
+- ```list```是一种用于保存一些列有序项目的集合.
+- 项目的列表用```[]```括起来,这样Python才能理解到你正在指定一张列表.
+- 跟元组相比，列表(list)是变长的，而且其内容也是可以修改,添加,删除的。它是一种可变的(mutable)数据类型.
+- public method
+    - L.append(object) -- append object to end
+    - L.count(value) -> integer -- return number of occurrences of value
+    - L.extend(iterable) -- extend list by appending elements from the iterable
+    - L.index(value, [start, [stop]]) -> integer -- return first index of value.
+    - L.insert(index, object) -- insert object before index
+    - L.pop([index]) -> item -- remove and return item at index (default last).
+    - L.remove(value) -- remove first occurrence of value.
+    - L.reverse() -- reverse *IN PLACE*
+    - L.sort(cmp=None, key=None, reverse=False) -- stable sort *IN PLACE*;
 - insert 的计算量要比 append 大，因为后续的引用必须被移动，以便为新元素腾地方。
 - 如果不考虑(使用append和remove时的)性能，Python列表可以是一种非常不错的“多重集合”数据结构。
-- 通过 in 关键字，可以判断列表中是否含有某个值。
+- 通过```in```关键字，可以判断列表中是否含有某个值。
 - 注意，判断列表是否含有某个值的操作比字典(dict)和集合(set)慢得多，因为Python会对列表中的值进行先行扫描，而另外两个(基于哈希表)则可以瞬间完成判断。
 - 跟元组一样，用 + 将两个列表加起来即可实现合并。
 - 对于一个已定义的列表，可以用extend方法一次性添加多个元素。
@@ -256,6 +269,37 @@ for a, b, c in seq:
 - first_names, last_names = zip(*names)
 - 函数调用中星号(*seq)相当于： (seq[0], seq[1],...,seq[len(seq)-1])
 - reversed 用于按逆序迭代序列中的元素： list(reversed(range(10)))
+
+
+
+# tuple(元组)
+- tuple 元组是一种一维的、定长的、不可变的Python对象序列。你不能编辑或更改元组.
+- tuple最简单的创建方式是一组以逗号隔开的值，在更复杂的表达式中定义元组时，常常需要用圆括号将值围起来。
+- 我会推荐你总是使用圆括号来致命元组的开始与结束,尽管括号是一个可选项.
+- 元组通常用于保证某一语句或某一用户定义的函数可以安全地采用一组数值.
+- ```empty_tupl = ()``` 表示一个空的元组
+- ```singleton(2.)``` 表示元组中只有一个元素
+- 通过调用tuple()任何序列或迭代器都可以被转换为元组
+- 跟大部分其他序列类型一样，元组的元素也可以通过方括号[]进行访问。序列是从0开始索引的。
+- 虽然存储在元组中的对象本身可能是可变的，但一旦创建完毕，存放在各个插槽中的对象就不能在被修改了。
+```Python
+tup = tuple(['foo', [1, 2], True])
+tup[1].append(3)
+```
+- 元组可以通过 + 运算符连接起来以产生更长的元组
+- 对一个元组乘以一个整数，相当于是连接该元组的多个副本。注意对象本身不会被复制的，这里涉及的只是他们的引用
+- 如果对元组型变量表达式进行赋值，Python就会尝试将等号右侧的值进行拆包(unpacking),嵌套元组也能被拆包。
+- 利用上述功能可以非常轻松地交换变量名。 ```b, a = a, b```
+- 变量拆包功能常用于对由元组或列表组成的序列进行迭代，另一个常见的用法是处理从函数中返回多个值。
+```Python
+seq = [(1, 2, 3), (4, 5, 6), (7, 8, 9)]
+for a, b, c in seq:
+    pass
+```
+- 由于元组的大小和内存不能被修改，所以实例方法很少。最有用的是count(列表也是如此)。计算指定值出现的次数。 
+    - T.count(value) -> integer -- return number of occurrences of value
+    - T.index(value, [start, [stop]]) -> integer -- return first index of value.
+
 
 
 
@@ -300,6 +344,12 @@ for word in words:
 - 如果要将列表当做键,最简单的办法就是将其转换成元组:dict1[tuple([1, 2, 3])] = 5
 
 
+
+
+# sequence(序列)
+
+
+
 # set(集合)
 - 集合(set)是由唯一元素组成的无序集.
 - 可以将其看成是只有键而没有值的字典.
@@ -311,6 +361,11 @@ for word in words:
 a_set.issupperset({1, 2, 3})
 ```
 - 不难看出,如果两个集合内容相等,则他们就是相等的: {1, 2, 3} == {3, 2, 1}
+
+
+
+# reference(引用)
+
 
 
 # comprehensions(推导式)

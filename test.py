@@ -1,7 +1,4 @@
-import sys
+def say_hi():
+    print('Hi, this, is mymodule speaking.')
 
-print('The command line arguments are:')
-for i in sys.argv:
-    print(i)
-
-print('\n\nThe PYTHONPATH is', sys.path, '\n')
+__version__ = '0.1'
