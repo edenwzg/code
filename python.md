@@ -141,6 +141,7 @@
 - 将一个timedelta加到一个datetime上会产生一个新的datetime
 
 
+
 # 运算符与表达式
 - 运算符
     - lambda
@@ -158,6 +159,9 @@
     - (expressions...), [expressions...], {key: value...}, {expressions...}
 - 表达式
     - value = true-expr if condition else false-expr 三元表达式。如果条件表达式非常复杂，就可能会牺牲可读性。
+
+
+
 
 # control flow(控制流)
 - 如果任何一个条件为True，则其后的elif或else块都不会执行。
@@ -182,31 +186,16 @@
 
 
 
-# 异常处理
-- 优雅地处理Python错误或异常是构建健壮程序的重要环节。
-```Python
-def attempt_float(x):
-    try:
-        return float(x)
-    '''
-    只需要编写一个由异常类组成的元组，即可捕获多个异常，
-    但是TypeError(输入的参数不是字符串或数值)可能意味着程序中存在合法性bug。
-    '''
-    except (TypeError, ValueErroe): 
-        return x
-# -----------------
-f = open(path, 'w')
-try:
-    write_to_file(f)
-except:
-    print 'Failed'      # except 后面加上异常类型可以只针对某种异常进行处理
-else:
-    print 'Succeeded'   # 只在try块成功时执行
-finally:
-    f.close()           # 文件句柄f适中都会被关闭
-```
-- 对于非常长的范围，建议使用xrange，其参数跟range一样，但它不会预先产生所有的值并将他们保存到列表中(可能会非常大)，而是返回一个用于逐个产生整数的迭代器。
-- 在Python 3中，range始终返回迭代器，因此也就没有必要使用xrange函数了。
+# Modules(模块)
+- 如果你想在你所编写的别的程序中重用一些函数的话,答案是模块(Modules).
+- 最简单编写模块的方法便是创建一个包含函数,变量以.py为后缀的文件.
+- 另一种方法时编写Python解释器本身的本地语言.你可以使用C来编写Python模块,并在编译后,通过Python解释器在Python代码中使用它们.
+- 标准库就是一系列模块.
+- sys模块包含了与Python解释器及其环境相关的功能,也就是所谓的系统功能(system)
+- 初始化工作只需在我们第一次导入模块时完成.
+- ```sys.argv```包含了命令行参数(Command Line Arguments),这一列表,也就是使用命令行传递程序的参数.
+- ```sys.path``` Python解释器首先会寻找模块,它会从它的sys.path变量所提供的目录中进行搜索.该目录包括了包含导入模块的字典名称列表.第一段字符串是空的,它代表程序启动的目录,这意味着你可以直接导入位于启动目录中的模块.否则,你必须将模块放置在sys.path内所列出的目录中.
+- ```import os; print(os.getcwd())```可以用来查看目前程序所在目录.
 
 
 
@@ -391,6 +380,7 @@ def bind_a_variable():
 - 可以在任何位置进行函数生命,即使是局部函数(在外层函数被调用之后才会被动态创建出来)也是可以的.
 - 严格意义上来说,所有函数都是某个作用域的局部函数,这个作用域可能刚好就是模块级的作用域.Built-in(outtermost)
 
+
 ## arguments(参数)
 - 对于一些函数,你可能希望使用一些参数可选并使用默认值,以避免用户不想为他们提供值.可以使用默认参数值.
 - 要注意,默认参数值应该是常数.更确切地说,默认参数值应该是不可变的.
@@ -403,6 +393,7 @@ def bind_a_variable():
 - 有时你可能想定义的函数里面能够有任意数量的变量,也就是参数数量是可变的,这可以通过使用星号来实现.
     - 当我们声明一个*param时,从此处开始直到结束的所有位置参数(Positional Arguments)都将被汇集成一个称为param的元组(Tuple)
     - 当我们生命一个**param时,从此处开始直到结束的所有关键字参数都将被汇集成一个名为param的字典(Dictionary)
+
 
 ## return(返回值)
 - 如果函数没有return语句则默认返回None,即没一个函数都在其末尾隐含了一句```return None```
@@ -420,8 +411,16 @@ def f():
 a, b, c = f()
 ```
 
+
 ## DocStrings(文档字符串)
-- 
+- 函数的第一行中的逻辑行中的字符串时该函数的文档字符串(DocString).
+- 文档字符串也适用于模块(Mudules)与类(Class)
+- 编写约定:第一行以某一大写字母开始，以句号结束。第二行为空行，后跟的第三行开始是任何详细的解释说明.
+- 使用函数的__doc__属性来获取其文档字符串.
+- help()函数的用途便是获取函数的__doc__属性,并以一种整洁的方式呈现.
+- 自动化工具可以以这种方式检索你程序中的文档.
+- 你的Python发型版中附带的pydoc命令与help()使用文档字符串的方式类似.
+
 
 ## 函数亦为对象
 - 由于Python函数都是对象,因此,在其他语言中较难表达的一些设计思想Python中就要简单很多了.
@@ -643,6 +642,37 @@ flush() | 清空内部I/O缓存区,并将数据强行写回磁盘
 seek(pos) | 移动到指定的文件位置(整数)
 tell() | 以整数形式返回当前文件位置
 closed | 如果万能键已关闭,则为True 
+
+
+
+
+# 异常处理
+- 优雅地处理Python错误或异常是构建健壮程序的重要环节。
+```Python
+def attempt_float(x):
+    try:
+        return float(x)
+    '''
+    只需要编写一个由异常类组成的元组，即可捕获多个异常，
+    但是TypeError(输入的参数不是字符串或数值)可能意味着程序中存在合法性bug。
+    '''
+    except (TypeError, ValueErroe): 
+        return x
+# -----------------
+f = open(path, 'w')
+try:
+    write_to_file(f)
+except:
+    print 'Failed'      # except 后面加上异常类型可以只针对某种异常进行处理
+else:
+    print 'Succeeded'   # 只在try块成功时执行
+finally:
+    f.close()           # 文件句柄f适中都会被关闭
+```
+- 对于非常长的范围，建议使用xrange，其参数跟range一样，但它不会预先产生所有的值并将他们保存到列表中(可能会非常大)，而是返回一个用于逐个产生整数的迭代器。
+- 在Python 3中，range始终返回迭代器，因此也就没有必要使用xrange函数了。
+
+
 
 
 
