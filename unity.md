@@ -1,3 +1,4 @@
 - MonoBehaviour
 - Update
 - Start
+- Debug.Log
