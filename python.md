@@ -58,7 +58,8 @@
 - mutable(可变的)
 - method(方法)
 - field(字段)
-
+- field(字段)
+- Symbol Table(符号表):在定义函数的参数列表时,就制定了相关的键值匹配对.当你在函数中访问某一变量时,它其实就是在访问字典中的某个键值.
 - column-oriented(面向列)
 - panel data(面板数据):这是计量经济学中有关多维结构化数据集的一个术语。
 - Munge/Munging/Wrangling(数据规整)
@@ -206,7 +207,7 @@
 - ```import os; print(os.getcwd())```可以用来查看目前程序所在目录.
 - 导入一个模块是一件代价高昂的事情,因此Python引入了一些技巧使其能够更快速的完成.
 - 按字节码编译的(Byte-Compiled)文件,以.pyc为扩展名,是将Python转换成中间形式的文件.这一文件在下一次从其他不同程序导入模块时将更快.
-- .pyc文件通常会创建在与对应的.py文件所处的目录中.如果Python没有写入文件权限,那么.pyc文件将不会被创建.    
+- .pyc文件通常会创建在与对应的.py文件所处的目录中.如果Python没有写入文件权限,那么.pyc文件将不会被创建.
 - 一般来说,应该避免使用from import,而去使用import.这是为了避免在程序中出现名称冲突,同时也是为了使程序更加易读.
 - 每个Python模块都定义了它的__name__属性.如果它与__main__属性相同则代表这一模块是由用户独立运行的,否则它就是从其他模块导入的.
 - 编写自己的模块很简单,因为每一个Python程序同时也是一个模块.
@@ -228,7 +229,7 @@
 # list(列表)
 - ```list```是一种用于保存一些列有序项目的集合.
 - 项目的列表用```[]```括起来,这样Python才能理解到你正在指定一张列表.
-- 跟元组相比，列表(list)是变长的，而且其内容也是可以修改,添加,删除的。它是一种可变的(mutable)数据类型.
+- 跟元组相比，列表(list)是变长的，而且其内容也是可以修改,添加,删除的。它是一种可变的(mutable)数据类型
 - public method
     - L.append(object) -- append object to end
     - L.count(value) -> integer -- return number of occurrences of value
@@ -275,6 +276,25 @@
 # tuple(元组)
 - tuple 元组是一种一维的、定长的、不可变的Python对象序列。你不能编辑或更改元组.
 - tuple最简单的创建方式是一组以逗号隔开的值，在更复杂的表达式中定义元组时，常常需要用圆括号将值围起来。
+- public method
+    - D.clear() -> None.  Remove all items from D.
+    - D.copy() -> a shallow copy of D
+    - dict.fromkeys(S[,v]) -> New dict with keys from S and values equal to v.
+    - D.get(k[,d]) -> D[k] if k in D, else d.  d defaults to None.
+    - D.has_key(k) -> True if D has a key k, else False
+    - D.items() -> list of D's (key, value) pairs, as 2-tuples
+    -  'iteritems',
+    -  'iterkeys',
+    -  'itervalues',
+    -  'keys',
+    -  'pop',
+    -  'popitem',
+    -  'setdefault',
+    -  'update',
+    -  'values',
+    -  'viewitems',
+    -  'viewkeys',
+    -  'viewvalues'
 - 我会推荐你总是使用圆括号来致命元组的开始与结束,尽管括号是一个可选项.
 - 元组通常用于保证某一语句或某一用户定义的函数可以安全地采用一组数值.
 - ```empty_tupl = ()``` 表示一个空的元组
@@ -307,9 +327,13 @@ for a, b, c in seq:
 - 字典(dict)可算是Python中最重要的内置数据结构。
 - 它更常见的名字是哈希映射(hash map)或相联数组(associative array)。
 - 它是一种大小可变的键值对集，其中的键(key)和值(value)都是python对象。
+- 键必须是唯一的,正如在现实中面对两个完全同名的人,你没办法找出有关他们的正确信息.
+- 你只能使用不可变对象(如字符串)作为字典的键,但是你可以使用可变和不可变对象作为字典的值.
+- 字典中的成对的键和值不会以任何方式进行排序.如果你希望为他们安排一个特别的次序,只能在使用他们之前进行排序.
+- 字典是属于dict类下的实例或对象.
 - 创建字典的方式之一是：使用大括号{}并用冒号:分隔键和值。
 - 判断字典中是否存在某个键，语法和在列表和元组中判断是否存在某个值是一样的：'b' in d1
-- 使用del关键字或pop()方法(删除指定值后将其返回)可以删除值。
+- 使用```del```关键字或```pop()```方法(删除指定值后将其返回)可以删除值(不需要直到与该键对应的值)
 - keys()和values()方法分别用于获取键和值的列表。虽然键值对没有特定的顺序，但这两个函数会以相同的顺序输出键和值。
 - 在python 3中，dict.keys()和dict.values()会返回迭代器而不是列表。
 - 利用update()方法，一个字典可以被合并到另一个字典中去。
