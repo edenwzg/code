@@ -17,49 +17,17 @@
 - matpoltlib:是最流行的用于绘制数据库图表的 Python 库。它和 IPython 结合的很好。
 - SciPy:是一组专门解决科学计算中各种标准问题域的包的集合。
 
+
 # python2 & python3
 - ```input()```在python2中是把输入的数据直接当做代码来执行,Python3把这个函数删了.用```raw_input()```替代输入. 
 - print
     - from __future__ import print_function
+- str 字符串类型。Python 2.x 中只有 ASCII值，而Python 3 中则是Unicode
+
 
 # Terminology(术语)
-- Literal Constants(字面常量):你用的就是它字面意义上的值或是内容.它是一个 常量，因为它的值不能被改变。
 - Escape Sequence(转义序列)
-- Identifiers(标识符)
-- Physical Line(物理行):在编程写程序时你所看到的内容.
-- Logical Line(逻辑行):是Python所看到的内容.Python会假定没一个物理行,会对应一个逻辑行.
-- Data Type(数据类型)
-- Explicit Line Joining(显示行连接)
-- Implicit Line Joining(隐式行连接)
-- Indentation(缩进)
-- block(块)
-- Expressions(表达式)
-- Operators(运算符)
-- Operands(操作数)
-- Membership Tests(成员资格测试):in, not in
-- Identity Tests(资格测试):is, is not
-- iterates(迭代)
-- sequence(序列)
-- Parameters(形参)
-- Arguments(实参)
-- global(全局)
-- local(局部)
-- scope(作用域)
-- namespace(命名空间)
-- Keyword Arguments(关键字参数)
-- Documentation Strings(文档字符串)
-- Packages(包)
-- Data Structures(数据结构)
 - structured data(结构化数据)
-- list(列表)
-- tuple(元组)
-- 字典(Dictionary)
-- set(集合)
-- mutable(可变的)
-- method(方法)
-- field(字段)
-- field(字段)
-- Symbol Table(符号表):在定义函数的参数列表时,就制定了相关的键值匹配对.当你在函数中访问某一变量时,它其实就是在访问字典中的某个键值.
 - column-oriented(面向列)
 - panel data(面板数据):这是计量经济学中有关多维结构化数据集的一个术语。
 - Munge/Munging/Wrangling(数据规整)
@@ -72,9 +40,9 @@
 
 # about Python(关于Python)
 - Python 时一种极少能声言兼具简单与功能强大的变成语言.
-- Python是一款易于学习且功能强大的编程语言.它具有高效率的数据结构,能够简单又有效地实现面向对象编程.
+- Python是一款易于学习且功能强大的编程语言.它具有高效率的数据结构(**Data Structures**),能够简单又有效地实现面向对象编程.
 - Python简洁的语法与动态输入之特性,加之其解释性语言的本质,使得它成为一种在多种领域与绝大多数平台都能进行脚本编写与应用快速开发工作的理想语言.
-- Python的创造者:吉多.范罗苏姆(Guido van Rossum).
+- Python的创造者:吉多.范罗苏姆(**Guido van Rossum**).
 - 大多数软件都是由两部分代码组成的：少量需要占用大部分执行时间的代码，以及大量不经常执行的“粘合剂代码”
 - 粘合剂代码的执行时间通常是微不足道的。开发人员的精力几乎都是花在优化计算瓶颈上面的，有时更是直接转用更低级的语言(比如C)。
 - Python 不仅适用于研究和原型构建，同时也适用于构建生产系统。
@@ -91,41 +59,51 @@
     - 解释重要的细节
     - 说明你想要解决的问题
     - 说明你想要在程序中克服的问题。
-- ```name + 'is' + str(age)``` 这样实现是很丑陋的.应该使用格式化方法.
-- ```print('{} was {} years old when he wrote this book'.format(name, age))```大括号内可以没有序号
-- ```print('{0:_^11}'.format('hello'))```定义字符串长度为11
-- ```print('{name} wrote {book}'.format(name='Swaroop', book='A Byte of Python'))```基于关键词输出
-- ```print('a'),```后面会去掉换行符
-- ```r"New \n"```采用原始字符串
+```python
+- print('{} was {} years old when he wrote this book'.format(name, age)) # 大括号内可以没有序号
+- print('{0:_^11}'.format('hello')) # 定义字符串长度为11
+- print('{name} wrote {book}'.format(name='Swaroop', book='A Byte of Python')) # 基于关键词输出
+- print('a'), # 后面会去掉换行符
+- print r"NEW \n" # 采用原始字符串
+```
+- 标识符(**identifiers**)是为了某些东西提供的给定名称.
+    - 第一个字符必须是字母表中的字母(大小写ASCII或Unicode),或下划线(_)
+    - 标识符的其他部分可以由字符,下划线,数字组成
+    - 标识符名称区分大小写,不能含有空格
+- 数据类型(**data type**):变量可以将各种形式的值保存为不同的数据类型.
 - 处理正则表达式时应该全程使用原始字符串.否则会有大量Back whacking需要处理.  
 - Python没有单独的long类型int类型可以指任何大小的整数.
 - Python中一切都是对象,包括数字,字符串与函数.
 - Python鼓励每一行使用一局独立语句从而使得代码更加可读.
+- 物理行(**physical line**):在编程写程序时你所看到的内容.
+- 逻辑行(**logical line**):是Python所看到的内容.Python会假定没一个物理行,会对应一个逻辑行.
 - 如果在一行物理行中指定多行逻辑行,那么必须通过使用分号(;)来明确表明逻辑行或语句的结束.
-- 如果有一行非常长的代码,可以通过使用反斜杠将其拆分成多个物理行.这被称作显式行连接.
-- 逻辑行以括号开始,可以是方括号或花括号,但不能是结束括号.这被称作隐式连接.
+- 如果有一行非常长的代码,可以通过使用反斜杠将其拆分成多个物理行.这被称作显式行连接(**explicit line joining**).
+- 逻辑行以括号开始,可以是方括号或花括号,但不能是结束括号.这被称作隐式行连接(**implicit line joining**).
+- 空白区在各行的开头非常重要,这被称作缩进(**indentation**)
+- 放在一起的语句必须拥有相同的缩进,每一组这样的语句被称为块(**block**)
+- 你便携的大多数语句(逻辑行)都包含了表达式(**expressions**).表达式可以细分为运算符(**operators**)和操作数(**operands**).
 - Python中没有单独的char数据类型.它并非切实必要,并且我相信你不会想念它的.
 - 字符串是不可变的,一旦你创造了一串字符串,你就不能再改变它.这并非一件坏事.
-- 赋值(assignment)操作也叫做绑定(binding)，因为我们其实是姜一个名称和一个对象绑定到一起。已经赋值的变量有时也被称为已绑定变量(bound variable)
 - 当你将对象以参数的形式传入函数时，其实只是传入了一个引用而已，不会发生任何复制。因此，Python被称为是按引用传递的。
 - python是一种强类型语言，也就是说，所有对象都有一个特定的类型(或类)，隐式转换只在很明显的情况下才会发生。
-- Python 中的对象有属性(attribute，即存储在该对象那个“内部”的其他Python对象)
-- Python 中的对象有方法(method，与该对象有关的能够访问其内部数据的函数)。
-- 一般来说，你可能不会关心对象的类型，而只是想直到它到底有没有某些方法或行为。
-- 只要一个对象实现了迭代器协议(iterator protocol)，你就可以确认它是可迭代的。
+- Python 中的对象有属性(**attribute**)或字段(**field**)，即存储在该对象那个“内部”的其他Python对象.它只是为该类定义且只为该类所用的变量.
+- Python 中的对象有方法(**method**)，即与该对象有关的能够访问其内部数据的函数.
+- 一般来说，你可能不会关心对象的类型，而只是想直到它到底有没有某些方法或行为.
+- 只要一个对象实现了迭代器协议(**iterator protocol**)，你就可以确认它是可迭代的。
 - ```from some_module import PI as pi, g as gf```
 - 要判断两个引用是否指向同一个对象，可以使用 is 关键字。 注意， == 是判断值，这不是一回事。
 - is 和 is not 常常用于判断变量是否为 None， 因为None的实例只有一个。
-- 大部分Python对象是可变的(mutable)，字符串和元组是不可变的(immutable)。————不能修改原内存块的数据。
-- 仅仅因为“可以修改某个对象”并不代表“就该那么做”。这种行为在编程中也教做副作用(side effect)。
+- 大部分Python对象是可变的(**mutable**)，字符串和元组是不可变的(**immutable**)。————不能修改原内存块的数据。
+- 仅仅因为“可以修改某个对象”并不代表“就该那么做”。这种行为在编程中也教做副作用(**side effect**)。
     - 在编写一个函数时，任何副作用都应该通过该函数的文档或注释明确地告知用户。
-    - 即时可以使用可变对象，也应该尽量避免副作用且注重不变性(immutability)
+    - 即时可以使用可变对象，也应该尽量避免副作用且注重不变性(**immutability**)
 - 最好使用圆括号操作符来对运算符与操作数进行分组,以更加明确地指定优先级.这也可以使得程序更加可读.但不要过度使用.
 - ```print 'a', 3``` Python 会自动帮我们在两个对象之间加上空格,呈现一个整洁的输出结果.这就是Python人性化的范例. 
 
 
 # standard type(标准类型)
-- str 字符串类型。Python 2.x 中只有 ASCII值，而Python 3 中则是Unicode
+- 字面常量(**Literal Constants**):你用的就是它字面意义上的值或是内容.它是一个 常量，因为它的值不能被改变。
 - unicode Unicode 字符串类型
 - float 双精度(64位)浮点数。注意，这里没有专门的 double 类型。
 - int 有符号整数，其最大值由平台决定(是32位还是64位)。
@@ -158,7 +136,9 @@
     - or
     - and
     - not x
-    - in, not in, is, is not, <, <=, >, >=, !=, ==
+    - in, not in (成员资格测试)(**membership test**)
+    - is, is not (身份测试)(**identity tests**)
+    - <, <=, >, >=, !=, ==
     - |, ^, &
     - << >>
     - +, -, *, /, //, %, **
@@ -181,7 +161,7 @@
 - for语句同样可以拥有else子句,它总会在for循环结束后开始执行,除非程序遇到了break语句.
 - ```range()```每次只会生成一个数字,如果希望获得完整的序列,要使用```list(range(5))```
 - ```for i in range(1,5)``` 等价于 ```for i in [1,2,3,4]```
-- for循环用于对集合(列表或元组)或迭代器进行迭代。
+- for循环用于对集合(列表或元组)或迭代器进行迭代(**iterates**)
 - for循环能再任何队列中工作.
 - Python中的for和C++中的完全不同,和C#中的foreach相似,和Java1.5中的for (int i : IntArray)没什么区别.
 - ```for (int i = 0; i < 5; i++)``` 等价于 ```for i in range(5)```后者更简单,更具表现力,且更不容易出错.
@@ -219,14 +199,24 @@
 - del 语句可以删除或移除一个变量或属性.```del exit``` ipython 将无法使用exit退出.
 - ```dir()```可以对任何对象工作.例如运行```dir(str)```可以访问str类的属性.```dir('str')```可以访问'str'字符串对象的方法.
 - ```vars()```函数也可以返回给你这些值的属性,但只是可能,它并不能针对所有类都能正常工作. vars() argument must have __dict__ attribute.
-- 如果你希望有组织的管理一个或多个模块的话,应该使用包(Packages).
+- 如果你希望有组织的管理一个或多个模块的话,应该使用包(**Packages**).
 - 包是指一个包含模块与一个特殊的__init__.py文件的文件夹,后者想Python表明这一文件夹是特别的,因为其包含了Python模块.
 - 函数是程序中可重用部分,模块是一种可重用的程序,包是用以组织模块的另一种层次结构.
 - Python所附带的标准库就是这样一组有关包与模块的例子.
 
 
+# Data Structures(数据结构)
+- 数据结构(**Data structures**)它只是一种结构,能够将一些数据聚合在一起.它们是用来存储一系列相关数据的集合.
+- Python有四种内置的数据结构列表(**list**),元组(**tuple**),字典(**dictionary**)和集合(**set**)
+## sequence(序列)
+- 列表,元组,字符串可以看作序列(**sequence**)的某种表现形式.
+- 序列的主要功能是资格测试(**membership test)(**也就是in与not in表达式)和索引操作(**indexing operations**).
+- 序列拥有一种切片(**slicing**)运算符,它能够允许我们获取序列之中的一部分.切片中第三个参数也用冒号分割,其将被视为切片的步长(**step**)
+- 使用索引来获取序列中的各个项目.这被称作下标操作(**subscription operation**).
+- 序列的一大优点在于你可以使用同样的方式访问数组,列表与字符串.
 
-# list(列表)
+
+## list(列表)
 - ```list```是一种用于保存一些列有序项目的集合.
 - 项目的列表用```[]```括起来,这样Python才能理解到你正在指定一张列表.
 - 跟元组相比，列表(list)是变长的，而且其内容也是可以修改,添加,删除的。它是一种可变的(mutable)数据类型
@@ -273,28 +263,9 @@
 
 
 
-# tuple(元组)
+## tuple(元组)
 - tuple 元组是一种一维的、定长的、不可变的Python对象序列。你不能编辑或更改元组.
 - tuple最简单的创建方式是一组以逗号隔开的值，在更复杂的表达式中定义元组时，常常需要用圆括号将值围起来。
-- public method
-    - D.clear() -> None.  Remove all items from D.
-    - D.copy() -> a shallow copy of D
-    - dict.fromkeys(S[,v]) -> New dict with keys from S and values equal to v.
-    - D.get(k[,d]) -> D[k] if k in D, else d.  d defaults to None.
-    - D.has_key(k) -> True if D has a key k, else False
-    - D.items() -> list of D's (key, value) pairs, as 2-tuples
-    -  'iteritems',
-    -  'iterkeys',
-    -  'itervalues',
-    -  'keys',
-    -  'pop',
-    -  'popitem',
-    -  'setdefault',
-    -  'update',
-    -  'values',
-    -  'viewitems',
-    -  'viewkeys',
-    -  'viewvalues'
 - 我会推荐你总是使用圆括号来致命元组的开始与结束,尽管括号是一个可选项.
 - 元组通常用于保证某一语句或某一用户定义的函数可以安全地采用一组数值.
 - ```empty_tupl = ()``` 表示一个空的元组
@@ -323,8 +294,27 @@ for a, b, c in seq:
 
 
 
-# dict(字典)
-- 字典(dict)可算是Python中最重要的内置数据结构。
+## dict(字典)
+- public method
+    - ```D.clear()``` -> None.  Remove all items from D.
+    - ```D.copy()``` -> a shallow copy of D.
+    - ```dict.fromkeys(S[,v])``` -> New dict with keys from S and values equal to v.(builtin_function_or_method)
+    - ```D.get(k[,d])``` -> D[k] if k in D, else d.  d defaults to None.
+    - ```D.has_key(k)``` -> True if D has a key k, else False.
+    - ```D.items()``` -> list of D's (key, value) pairs, as 2-tuples.
+    - ```D.iteritems()``` -> an iterator over the (key, value) items of D.
+    - ```D.iterkeys()``` -> an iterator over the keys of D.
+    - ```D.itervalues()``` -> an iterator over the values of D.
+    - ```D.keys()``` -> list of D's keys.
+    - ```D.pop(k[,d])``` -> v, remove specified key and return the corresponding value.
+    - ```D.popitem()``` -> (k, v), remove and return some (key, value) pair as a 2-tuple; but raise KeyError if D is empty.
+    - ```D.setdefault(k[,d])``` -> D.get(k,d), also set D[k]=d if k not in D.
+    - ```D.update([E, ]**F)``` -> None.  Update D from dict/iterable E and F.
+    - ```D.values()``` -> list of D's values.
+    - ```D.viewitems()``` -> a set-like object providing a view on D's items.
+    - ```D.viewkeys()``` -> a set-like object providing a view on D's keys.
+    - ```D.viewvalues()``` -> an object providing a view on D's values.
+- 字典(dict)可算是Python中最重要的内置数据结构(**Data Structures**)。
 - 它更常见的名字是哈希映射(hash map)或相联数组(associative array)。
 - 它是一种大小可变的键值对集，其中的键(key)和值(value)都是python对象。
 - 键必须是唯一的,正如在现实中面对两个完全同名的人,你没办法找出有关他们的正确信息.
@@ -368,27 +358,80 @@ for word in words:
 - 如果要将列表当做键,最简单的办法就是将其转换成元组:dict1[tuple([1, 2, 3])] = 5
 
 
+## str(字符串)
+- public method
+    'capitalize',
+    'center',
+    'count',
+    'decode',
+    'encode',
+    'endswith',
+    'expandtabs',
+    'find',
+    'format',
+    'index',
+    'isalnum',
+    'isalpha',
+    'isdigit',
+    'islower',
+    'isspace',
+    'istitle',
+    'isupper',
+    'join',
+    'ljust',
+    'lower',
+    'lstrip',
+    'partition',
+    'replace',
+    'rfind',
+    'rindex',
+    'rjust',
+    'rpartition',
+    'rsplit',
+    'rstrip',
+    'split',
+    'splitlines',
+    'startswith',
+    'strip',
+    'swapcase',
+    'title',
+    'translate',
+    'upper',
+    'zfill'
 
 
-# sequence(序列)
-
-
-
-# set(集合)
-- 集合(set)是由唯一元素组成的无序集.
+## set(集合)
+- public method
+    'add',
+    'clear',
+    'copy',
+    'difference',
+    'difference_update',
+    'discard',
+    'intersection',
+    'intersection_update',
+    'isdisjoint',
+    'issubset',
+    'issuperset',
+    'pop',
+    'remove',
+    'symmetric_difference',
+    'symmetric_difference_update',
+    'union',
+    'update'
+- 集合(**set**)是由唯一元素组成的无序集合(**collection**).
+- 当集合中的项目存在与否比次序或其出现次数更加重要时,我们就会使用集合.
+- 通过使用集合,可以判断一个集合是否是另一个集合的子集(原集合包含于新集合)或超集(原集合包含新集合)或找到两个集合的交集.
+- 集合支持各种数学集合运算,如并(或)(|)\交(与)(&)\差(-)以及对称差(异或)(^)等.
 - 可以将其看成是只有键而没有值的字典.
 - 集合的创建方式有二:使用set()函数,或用大括号包起来的集合字面量.
-- 集合支持各种数学集合运算,如并(或)(|)\交(与)(&)\差(-)以及对称差(异或)(^)等.
-- 可以判断一个集合是否是另一个集合的子集(原集合包含于新集合)或超集(原集合包含新集合)
-```Python
-{1, 2, 3}.issubset(a_set)
-a_set.issupperset({1, 2, 3})
-```
 - 不难看出,如果两个集合内容相等,则他们就是相等的: {1, 2, 3} == {3, 2, 1}
 
-
-
-# reference(引用)
+## reference(引用)
+- 赋值(**assignment**)操作也叫做绑定(**binding**)
+- 当创建一个对象并将其分配给某个变量时,变量只会查阅(**refer**)某个对象,并且它也不会代表对象本身.
+- 我们其实是将一个名称和一个对象绑定到一起。已经赋值的变量有时也被称为已绑定变量(**bound variable**)
+- 如果你希望创建一份诸如序列等复杂对象的副本(而非整数这种简单的对象),你必须使用切片操作来制作副本.
 
 
 
@@ -433,16 +476,18 @@ for val in collection:
 - 我严重认为大部分程序员在做数据分析工作时所编写的函数不够多.
 - 函数是用def关键字声明的.
 - 如果到达函数末尾时没有遇到任何一个return语句,则返回None
-- 函数可以有一些位置参数(Position)和一些关键字参数(keyword).关键字参数常用于指定默认值或可选参数.
+- 函数可以有一些位置参数(**Position arguments**)和一些关键字参数(**keyword arguments**).关键字参数常用于指定默认值或可选参数.
 - 函数参数的主要限制在于:关键字参数必须位于位置参数之后.
 - 你可以以任何顺序指定关键字参数.也就是说,你不用死记硬背函数的关键字参数顺序,只要记得他们的名字就可以了.
+- 在定义函数是给定的参数名称称为形参(**parameters**),在函数调用时提供的参数值称为实参(**arguments**)
+- Symbol Table(符号表):在定义函数的参数列表时,就制定了相关的键值匹配对.当你在函数中访问某一变量时,它其实就是在访问字典中的某个键值.
 
 
 ## namespace(命名空间),scope(作用域),以及local(局部)
 - 当你在一个函数的定义中生命变量时,它们不会以任何方式与身处函数之外但具有相同名称的变量产生关系.
-- 函数可以访问两种不同作用域中的变量:全局(global)(next-to-last)和局部(local)(innermost).
-- Python有一种更科学的用于描述变量作用域(scope)的名称,即命名空间(namespace).
-- 任何在函数中赋值的变量默认都是被分配到局部命名空间(local namespace)中的.
+- 函数可以访问两种不同作用域中的变量:全局(**global**)(**next-to-last**)和局部(**local**)(**innermost**).
+- Python有一种更科学的用于描述变量作用域(**scope**)的名称,即命名空间(**namespace**).
+- 任何在函数中赋值的变量默认都是被分配到局部命名空间(**local namespace**)中的.
 - 你可以使用定义于函数之外的变量值(函数中没有同名变量).然而,这种方式不会受到孤立而且应该避免,因为它使程序含糊不清.
 - 局部命名空间是在函数被调用时创建的,函数参数会立即填入该命名空间.在函数执行完毕后,局部命名空间就会被销毁(除了闭包).
 - 虽然可以在函数中对全局变量进行赋值操作,但是那些变量必须用global关键字声明成全局的才行.
@@ -457,7 +502,7 @@ def bind_a_variable():
         a.append(i)
 ```
 - 可以在任何位置进行函数生命,即使是局部函数(在外层函数被调用之后才会被动态创建出来)也是可以的.
-- 严格意义上来说,所有函数都是某个作用域的局部函数,这个作用域可能刚好就是模块级的作用域.Built-in(outtermost)
+- 严格意义上来说,所有函数都是某个作用域的局部函数,这个作用域可能刚好就是模块级的作用域.(**Built-in**)(**outtermost**)
 
 
 ## arguments(参数)
@@ -490,9 +535,8 @@ def f():
 a, b, c = f()
 ```
 
-
 ## DocStrings(文档字符串)
-- 函数的第一行中的逻辑行中的字符串时该函数的文档字符串(DocString).
+- 函数的第一行中的逻辑行中的字符串时该函数的文档字符串(**Documentation Strings**).
 - 文档字符串也适用于模块(Mudules)与类(Class)
 - 编写约定:第一行以某一大写字母开始，以句号结束。第二行为空行，后跟的第三行开始是任何详细的解释说明.
 - 使用函数的__doc__属性来获取其文档字符串.
