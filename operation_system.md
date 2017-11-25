@@ -81,6 +81,13 @@
 - 游戏结算
     http://games.dltongyou.com/tongyou/gameLog/insertGameLog.shtml?json={"machineId" :"1000001791511426278504DlbKwc0Hyj","userCound":"1","startTime":"2017-11-24 12:32:12","endTime":"2017-11-24 12:36:23","userData":[{"cardId":"o7r670zDkW0zMppqj1S7IpXhAkG81230","point":"1010","gold":"1010","animals":{"ids":[1],"cnt":[3]},"huntingCnt":"8","huntingFail":"3","brokeRope":"7","miss":"2","overTurn":"10"}]}
 
+200000072
+
+
+100000184 商家
+    300000010 店面
+        400000013 产品
+            500000024 1000001841511594225410HCcuyYeAMZ
 
 100000182:商家:王泽光
     300000005:上海迪斯尼
