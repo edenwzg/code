@@ -36,6 +36,17 @@
 - JSON(JavaScript Object Notation):一种常用的 Web 数据格式
 - list comprehension(列表推倒式):这是一种在一组字符串(或一组别的对象)上执行一条相同的操作(如 json.loads)的简洁方式。
 - summary view(摘要试图):主要用于显示较大的 DataFrame 对象。
+- implementation (实现)
+- testing (测试)
+- specification (格式)
+- concatenates (连接)
+- recursively (递归地)
+- operation (操作)
+- deployment (部署)
+- maintenance (维护)
+- buy fixing (错误修复)
+- quiet (运行)
+- phases (阶段)
 
 
 # about Python(关于Python)
@@ -956,6 +967,15 @@ IPython
 - IPython Notebook 应用程序是一个运行于命令行上的轻量级服务器进程。
 - ipython notebook --pylab=inline 可以启动 IPython Notebook 服务器。
 
+# 软件开发流程
+- 程序是成长起来的,不是搭建出来的(Software is grown, not built)--Bill de hOra <link>http://97things.oreilly.com/wiki/index.php/Great_software_is_not_built,_it_is_grown<link>
+- 开发一款软件中的各个阶段(Phases)
+    - Waht 做什么(分析)
+    - How 怎么做(设计)
+    - Do It 开始做(执行)
+    - Test 测试(测试与修复错误)
+    - Use 使用(操作或开发)
+    - Maintain 维护(改进)
 
 HardWay
 ================================================================================
