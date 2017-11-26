@@ -734,6 +734,91 @@ dict((i, i ** 2) for i in xrange(5))
 - 标准库itertools模块中有一组用于许多长剑数据算法的生成器.
 > 书中这部分内容没理解.
 
+
+# 面向对象编程
+- 围绕函数设计程序,也就是那些能够处理数据的代码块,这被称为面向过程(**procedure-oriented**)的编程方式.
+- 还有另外一种组织程序的方式,它将数据与功能进行组合,并将其包装在被称作"对象"的东西内.
+- 在大多数情况下,你可以使用过程式编程,但是当你需要编写一个大型程序或面对某一更适合此方法的问题时,你可以考虑使用面向对象的编程技术.
+- 类(**class**)与对象(**object**)是面向对象编程的两个主要方面.
+- 一个类能够创建一种新的类型(**type**),其中的对象就是类的实例(**instance**).
+- 在python中即使是整数(**int**)也会被视为对象(int类对象).这不同与c++与Java(1.5版之前),在它们那儿整数是原始内置类型.
+- c#程序员会发现这与装箱与拆箱(**Boxing and unboxing**)概念颇有相似之处.
+- 属于某个对象或类的变量称为字段(**field**).
+- 对象还可以通过使用属于类的函数来拥有某些功能.这些函数被称作类的方法(**method**)
+- 上述两个术语特别重要,因为它有助于我们区分函数与变量,两者皆为独立且他们皆从属于某个类或对象.
+- 字段与方法都可以看作其所属类的属性(**attribute**)
+- 字段有两种类型,属于某一个类的各个实例或对象称为实例变量(**instance variables**),从属于某一个类本身称为类变量(**class variables**)
+## self
+- 类方法与普通函数只有一种特定的区别,前者必须有一个额外的名字,这个名字必须添加到参数列表的开头.
+- 类方法第一个变量引用的是对象本身,按照管理,它被赋予(**self**)这一名称.尽管你可以为self参数赋予任何名称,但是强烈推荐你使用self这一名称.
+- 你不用在调用类方法时为第一个参数赋值,python会为它提供.
+- python中的self相当于c++中的指针以及java与c#中的(**this*))指针.
+- 调用```myobject.method(arg1, arg2)```时,python会自动转换成```myclass.method(myobject, arg1, arg2)```这就是Self的全部特殊之处.
+## class
+```python
+class Person:  # 使用class语句和类名来创建一个新类.
+    pass  # 一个缩进的语句块
+
+p = Person()  # 使用类名跟一对括号的方法,给这个类创建了一个对象(或是实例)
+print p
+
+Out[n]: <__main__.Person instance at 0x000000000501F348>  # 在Person类的__main__模块中拥有了一个实例
+```
+
+## method
+```python
+class Person:
+    def say_hi(self):
+        print 'Hello, how are you?'
+
+p = Person()
+p.say_hi()  # 这一方法不需要参数,但是依旧在函数定义中拥有self变量
+
+Out[n]: Hello, how are you?
+```
+
+## __init__
+- python 中有不少类的属性名称有这特殊的意义,一般都是以__init__这种形式定义.
+- __init__方法会在类的对象被实例化(**instantiated**)时立即运行.这一方法可以对任何你想进行操作的目标对象进行初始化(**initalization**)操作.
+```python
+class Person:
+    def __init__(self, name):  # __init__方法接受name参数
+        self.name = name  # 创建了一个字段同样为name,尽管他们的名字都是name但这是两个不同的变量,self.意味着name是某个叫做self对象的一部分.
+    def say_hi(self):
+        print 'Hello, my name is', self.name
+    
+p = Person('Swaroop')  # 在Person类下创建实例p,不会显示地调用__init__方法.这正式这个方法的特殊之处所在.
+p.say_hi()  
+
+Out[n]: Hello, my name is Swaroop
+```
+
+## field(类变量与实例变量)
+- 字段(**field**)只不过是绑定(**bound**)到类与对象的命名空间(**namespace**)的普通变量.
+- 这代表字段仅在这些类与对象所存在的上下文中有效.这就是它们被称为"命名空间"的原因.
+- 字段有两种类型,类变量与对象变量,它们根据究竟是类还是对象拥有这些变量来进行分类.
+- 类变量(**class variable**)是共享的(**shared**),他们可以被属于该类的所有实例访问.
+- 类变量只拥有一个副本,当任何一个对象对类变量做出改变时,发生变动的将在其他所有实例中都会得到体现.
+- 对象变量(**object variable**)由类的每一个独立的对象或实例所拥有.在这种情况下,每个对象拥有属于它自己的字段的副本.
+- 对象变量不会被共享,也不会以任何方式与其他不同实例中的相同名称的字段产生关联.
+- 类变量用Class.popluation的方式引用,对象变量用self.name的方式引用.这被称作属性引用(**attribute refrernce**)
+- 除了Class.popluation,我们还可以使用self.__class__.population,因为每个对象都通过self.__class__属性来引用类.
+- 属于类而非属于对象的方法叫做类方法(**classmethod**)或是一个静态方法(**staticmethod**)
+- 使用装饰器(**decorator**)将一个方法标记为类方法
+- 你可以将装饰起想象为调用一个包装器(**wrapper**)函数的快捷.
+- 启用```@classmethod```等价于```methodname = classmethod(methodname)```
+- 在运行时通过```Class.__doc__```访问类的DocString,对于方法的文档字符串,则可以使用```Class.method.__doc__```
+- 所有类成员都是公开的.但有一个例外:如果数据成员的名字中使用双下划线作为前缀如__privatervar,python会使用名称调整(**name mangling**)来使其有效地成为一个私有变量.
+- 你需要遵循这样的约定:任何在类或对象之中使用的命名应以下划线开头,其他所有非此格式的名称都将是公开的,并可以为其他任何类或对象所使用.这只是一个约定,python并不强制如此(除了双下划线前缀这点)
+- 相对于c++,java,c#,python中所有成员(包括数据成员)都是公开的,并且python中所有的方法都是虚拟的(**vireual**)
+
+
+## inheritance
+
+
+
+
+
 #  file and operating system(文件和操作系统)
 - Python文件处理很简单,这也是Python在文本和文件处理方面流行的原因.
 - 为了打开一个文件以便读写,可以使用内置的open()函数以及一个相对或绝对文件路径.
@@ -755,27 +840,27 @@ with open('tmp.txt', 'w') as handle:
 open('tmp.txt').readlines()
 ```
 
-**Python的文件模式**
-模式 | 说明
----|---
-r | 只读模式
-w | 只写模式.创建新文件(删除同名的任何文件)
-a | 附加到现有文件(如果文件不存在则创建一个)
-r+ | 读写模式
-b | 附加说明某模式用于二进制文件, 即'rb'或'wb'
-U | 通用换行模式.单独使用'U'或附加到其他读模式(如'rU')
+Python的文件模式
+模式        | 说明
+---         |---
+r           | 只读模式
+w           | 只写模式.创建新文件(删除同名的任何文件)
+a           | 附加到现有文件(如果文件不存在则创建一个)
+r+          | 读写模式
+b           | 附加说明某模式用于二进制文件, 即'rb'或'wb'
+U           | 通用换行模式.单独使用'U'或附加到其他读模式(如'rU')
 
-**重要的Python文件方法或属性**
-方法 | 说明
----|---
-read([size]) | 以字符串形式返回文件数据,可选的size用于说明读取的字节数
-readlines([size]) | 将未见返回为行列表,可选参数size
-write(str) | 将字符串写入文件
-close() | 关闭句柄
-flush() | 清空内部I/O缓存区,并将数据强行写回磁盘
-seek(pos) | 移动到指定的文件位置(整数)
-tell() | 以整数形式返回当前文件位置
-closed | 如果万能键已关闭,则为True 
+重要的Python文件方法或属性
+方法                | 说明
+---                 |---
+read([size])        | 以字符串形式返回文件数据,可选的size用于说明读取的字节数       |
+readlines([size])   | 将未见返回为行列表,可选参数size
+write(str)          | 将字符串写入文件
+close()             | 关闭句柄
+flush()             | 清空内部I/O缓存区,并将数据强行写回磁盘
+seek(pos)           | 移动到指定的文件位置(整数)
+tell()              | 以整数形式返回当前文件位置
+closed              | 如果万能键已关闭,则为True 
 
 
 
