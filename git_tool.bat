@@ -5,8 +5,8 @@ set knowledge=D:\knowledge
 set operation=D:\operation_system
 set message="none"
 
-set /p input=Update all data? (y/n) 
-if "%input%"=="y" goto all
+set /p input=Update all data? (enter/n)
+if "%input%"==""  goto all
 if "%input%"=="n" goto common
 
 :all
