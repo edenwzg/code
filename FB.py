@@ -50,7 +50,7 @@ def make_change(amount, coins=[1, 5, 10, 25], hand=None):
 def Fibonacci(max):
     '''
     Fibonacci number.
-    
+
     param1: to generate the number for fibonacci series
     '''
     a, b, n = 0, 0, 1
@@ -59,3 +59,24 @@ def Fibonacci(max):
         a, b = b, a+b
         n += 1
     raise StopIteration('Done')
+
+
+class Counter(object):
+    def __init__(self, low, high):
+        self.current = low
+        self.high = high
+
+    def __iter__(self):
+        return self
+
+    def next(self):
+        if self.current < self.high:
+            self.current += 1
+            return self.current -1
+        raise StopIteration
+
+
+def Counter_generator(low, high):
+    while low <= high:
+        yield low
+        low += 1
