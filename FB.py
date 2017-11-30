@@ -32,3 +32,30 @@ def remove_forbidden(string, forbidden=','):
         if char in string:
             string = string.replace(char, '')
     return  string
+
+
+def make_change(amount, coins=[1, 5, 10, 25], hand=None):
+    '''
+    Find the only way to convert a dollar into any set of COINS 
+    '''
+    hand = [] if hand is None else hand
+    if amount == 0:
+        yield hand
+    for coin in coins:
+        if coin > amount or (len(hand) > 0 and hand[-1] < coin):
+            continue
+        for result in make_change(amount - coin, coins = coins, hand = hand + [coin]):
+            yield result
+
+def Fibonacci(max):
+    '''
+    Fibonacci number.
+    
+    param1: to generate the number for fibonacci series
+    '''
+    a, b, n = 0, 0, 1
+    if n < max:
+        yield b
+        a, b = b, a+b
+        n += 1
+    raise StopIteration('Done')
