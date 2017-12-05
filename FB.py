@@ -152,7 +152,6 @@ def write_dict(h, d, flip=True):
             h.write('%-50s%s\n' % (k,v))          
 
 
-
 def modify_filename_from_file(file, dir):
     '''
     Read the file to modify the filename.
@@ -191,6 +190,7 @@ def modify_filename(file, dir, base, char):
 
     f = open(file, 'w')
     newnames = {}
+    
     try:
         for name in os.listdir(dir):
             if isfile(join(dir, name)) == True:
