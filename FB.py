@@ -10,6 +10,7 @@ def reverse(string):
     :param1: this is a string to be processed
     :return: a copy of the string S
     '''
+
     return string[::-1]
 
 
@@ -20,6 +21,7 @@ def is_palindrome(string):
     :param1: this is a string to be processed
     :return: boolean 
     '''
+
     return string == reverse(string)
 
 
@@ -31,6 +33,7 @@ def remove_forbidden(string, forbidden=','):
     :param2: this is the deleted character sequence
     :return: a copy of the string S
     '''
+
     for char in forbidden:
         if char in string:
             string = string.replace(char, '')
@@ -41,7 +44,9 @@ def make_change(amount, coins=[1, 5, 10, 25], hand=None):
     '''
     Find the only way to convert a dollar into any set of COINS 
     '''
+
     hand = [] if hand is None else hand
+    
     if amount == 0:
         yield hand
     for coin in coins:
@@ -56,7 +61,9 @@ def fibonacci(max):
 
     param1: to generate the number for fibonacci series
     '''
+
     a, b, n = 0, 0, 1
+
     if n < max:
         yield b
         a, b = b, a+b
@@ -68,6 +75,7 @@ def counter(low, high):
     '''
     Counter for genterator.
     '''
+
     while low <= high:
         yield low
         low += 1
@@ -130,26 +138,44 @@ def splitf(filename, part="main"):
     return result
 
 
-def print_dict(d, flip=False): 
+def print_dict(dict, flip=False): 
     '''
+    Print the dictionary to the screen
+
+    :param1: the content to be print
+    :param2: flit the dictionary's key & value 
+    :return: None
     '''
+
     if flip:
-        for k, v in d.items():
+        for k, v in dict.items():
             print '%-20s%s' % (v,k)
     else:
-        for k, v in d.items():
+        for k, v in dict.items():
             print '%-50s%s' % (k,v)
 
 
-def write_dict(h, d, flip=True): 
+def write_dict(filename, dict, flip=True): 
     '''
+    Write the dictionary in the file.
+
+    :param1: the file to be written
+    :param2: the content to be written
+    :param3: flit the dictionary's key & value 
+    :return: None
     '''
-    if flip:
-        for k, v in d.items():
-            h.write('%-20s%s\n' % (v,k))
-    else:
-        for k, v in d.items():
-            h.write('%-50s%s\n' % (k,v))          
+
+    f = open(filename, 'w')
+
+    try:    
+        if flip:
+            for k, v in dict.items():
+                f.write('%-20s%s\n' % (v,k))
+        else:
+            for k, v in dict.items():
+                f.write('%-50s%s\n' % (k,v))
+    finally:
+        f.close()      
 
 
 def modify_filename_from_file(file, dir):
@@ -159,14 +185,14 @@ def modify_filename_from_file(file, dir):
     MKBD_S61.jpg        dioguitar23.net_MKBD-S61.jpg
     front part          back part
 
-    front part is the current file name
-    back part is the name to be modified
+    part one is the current file name
+    part two is the name to be modified
 
     :param1: file path for Record file name
     :param2: the directory for modify the file name
     :return: None
-    
     '''
+
     import os
     from os.path import join
 
@@ -178,30 +204,27 @@ def modify_filename(file, dir, base, char):
     '''
     Modify file name.
 
-    :param1: 
-    :param2: 
-    :param3: 
-    :param4: 
+    :param1: assign log file
+    :param2: rename directory for files
+    :param3: assign base name
+    :param4: a section containing a special character
     '''
 
     import os
     from os.path import join
     from os.path import isfile
 
-    f = open(file, 'w')
     newnames = {}
+    # Traverse the dir's File and Directory
+    for name in os.listdir(dir):
+        if isfile(join(dir, name)) == True:  # If it's files
+            # Generate new file names and rename
+            newnames[name] = '%s_%s%s' % (base, get_part(name, char), splitf(name, part='ext'))
+            os.rename(join(dir,name), join(dir, newnames[name]))
     
-    try:
-        for name in os.listdir(dir):
-            if isfile(join(dir, name)) == True:
-                newnames[name] = '%s_%s%s' % (base, get_part(name, char), splitf(name, part='ext'))
-                os.rename(join(dir,name), join(dir, newnames[name]))
-        
-        print_dict(newnames, flip=True)
-        write_dict(f, newnames)
-        print "%s files done!" % len(newnames)
-    finally:
-        f.close()
+    print_dict(newnames, flip=True)
+    write_dict(file, newnames)
+    print "%s files done!" % len(newnames)
 
 
 # ----------------------------------------------------------------------
