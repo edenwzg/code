@@ -20,6 +20,7 @@ s
 
 s.index
 
+
 # In[4]:
 
 
@@ -58,6 +59,7 @@ df2.dtypes
 
 df = get_price('000001.XSHE','2017-06-01','2017-06-14','1d',['open','high','low','close'])
 df
+
 
 # In[14]:
 
