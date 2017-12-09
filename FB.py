@@ -183,7 +183,6 @@ def modify_filename_from_file(file, dir):
     Read the file to modify the filename.
     
     MKBD_S61.jpg        dioguitar23.net_MKBD-S61.jpg
-    front part          back part
 
     part one is the current file name
     part two is the name to be modified
