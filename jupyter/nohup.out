@@ -1,0 +1,14 @@
+[W 14:35:03.193 NotebookApp] WARNING: The notebook server is listening on all IP addresses and not using encryption. This is not recommended.
+[I 14:35:03.240 NotebookApp] JupyterLab alpha preview extension loaded from C:\Users\Administrator\Anaconda2\lib\site-packages\jupyterlab
+JupyterLab v0.27.0
+Known labextensions:
+[I 14:35:03.243 NotebookApp] Running the core application with no additional extensions or settings
+[I 14:35:03.648 NotebookApp] Serving notebooks from local directory: D:\code\jupyter
+[I 14:35:03.648 NotebookApp] 0 active kernels 
+[I 14:35:03.648 NotebookApp] The Jupyter Notebook is running at: http://[all ip addresses on your system]:8888/?token=ed72611b1b7cbc89e684d754ecf5277493f1a157627980d7
+[I 14:35:03.648 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 14:35:03.650 NotebookApp] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8888/?token=ed72611b1b7cbc89e684d754ecf5277493f1a157627980d7
