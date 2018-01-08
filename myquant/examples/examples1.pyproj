@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{78c089d1-084c-497f-b517-de4f6166dce8}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>eden_test01.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="ADX_DMI_STOCK\info.md" />
+    <Content Include="ADX_DMI_STOCK\python\adx_dmi_stock.ini" />
+    <Content Include="ADX_DMI_STOCK\python\stock_pool.csv" />
+    <Content Include="test_backtest.ini" />
+    <Content Include="test_strategy.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ADX_DMI_STOCK\python\adx_dmi_stock.py" />
+    <Compile Include="eden_test01.py" />
+    <Compile Include="test_backtest.py" />
+    <Compile Include="test_backtest_cw_config_ini.py" />
+    <Compile Include="test_md_live.py" />
+    <Compile Include="test_md_playback.py" />
+    <Compile Include="test_md_query.py" />
+    <Compile Include="test_strategy.py" />
+    <Compile Include="test_strategy_cw_config_ini.py" />
+    <Compile Include="test_td_live.py" />
+    <Compile Include="test_timer.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ADX_DMI_STOCK\" />
+    <Folder Include="ADX_DMI_STOCK\python\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>
